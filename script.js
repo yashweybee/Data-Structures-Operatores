@@ -1,9 +1,5 @@
 'use strict';
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
 // Data needed for first part of the section
 
 const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
@@ -405,4 +401,116 @@ function printGoals(...args) {
 //   console.log(key, `${key < 45 ? '[FIRST HALF]' : '[SECOND HALF]'}: ${value}`);
 // }
 
+/////////////////////////////////////
 
+// Strings
+
+const airline = 'TAP air portugal'
+const plane = "A370B"
+// console.log(airline.length);
+// console.log(airline.slice(8));
+// console.log(airline.indexOf('air'));
+// console.log(airline.lastIndexOf('a'));
+
+const midSeat = function (seat) {
+  // B and C have middle seat
+  const s = seat.slice(-1);
+
+  if (s === 'B' || s === 'C')
+    return true;
+  else
+    return false
+}
+// console.log(midSeat('11B'));
+// console.log(midSeat('11G'));
+// console.log(midSeat('11C'));
+
+// console.log(airline.toUpperCase());
+
+
+// const email = 'yash@gmail.com'
+// const loginMail = '   yash@gmail.com \n'
+
+// // const lowerMail = loginMail.toLowerCase();
+// // const trimmedMail = lowerMail.trim()
+
+// const normalizeMail = loginMail.toLowerCase().trim()
+// console.log(normalizeMail); 
+
+// console.log(airline.toLowerCase().replaceAll('t', 'aaaaa'));
+
+const checkBaggage = function (items) {
+  const items1 = items.toLowerCase();
+
+  if (items1.includes('knife') || items1.includes('gun')) {
+    console.log('You are not allowed');
+  } else {
+    console.log('You are allowed');
+  }
+}
+
+// checkBaggage('I have some food and knife for murder')
+// checkBaggage('snaks and camera')
+// checkBaggage('Git some snacks and a gun for protetion')
+
+const someString = "I+have+some+string"
+
+// console.log(someString.split('+').join(" "));
+
+const userName = "yash parmar"
+
+const capitalizeName = function (name) {
+  const name2 = name.toLowerCase().split(' ');
+  let updatedName = [];
+  for (const str of name2) {
+    updatedName.push(str[0].toUpperCase() + str.slice(1));
+  }
+  console.log(updatedName.join(" "));
+}
+
+// capitalizeName(userName)
+// capitalizeName("hello this is new string for capitalizing")
+
+
+const message = "this is string"
+// console.log(message.padStart(20, '*').padEnd(30, '-'));
+
+// const massCreditCard = function (num) {
+//   const str = num + ''
+//   const lastnums = str.slice(-4)
+//   console.log(lastnums.padStart(str.length, '*'));
+
+// }
+
+// massCreditCard(2983740237870087)
+
+/////////////////////////////////////////////////
+
+// Coding CHallenge - 4
+
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+
+// document.querySelector('button').addEventListener('click', function () {
+//   const inp = document.querySelector('textarea').value;
+//   const rows = inp.split('\n');
+//   for (const [index, x] of rows.entries()) {
+//     const [first, second] = x.toLowerCase().trim().split('_');
+//     const output = `${first}${second[0].toUpperCase() + second.slice(1)}`;
+//     console.log(`${output.padEnd(20)}${`✅`.repeat(index + 1)}`);
+//   }
+// })
+
+////////////////////////////////////////////////////
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// console.log(flights.split('+'));
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';')
+  const output = `${flight.startsWith('_Delayed') ? '🛑' : ""} ${type.replaceAll('_', " ").trim()} from ${from.slice(0, 3).toUpperCase()} to ${to.slice(0, 3).toUpperCase()} (${time.replace(':', 'h')})`
+  console.log(output.padStart(45));
+}
